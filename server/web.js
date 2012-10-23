@@ -10,7 +10,7 @@ function web() {
     app.configure(function() {
         var basePath = path.join(__dirname, '..');
         app.use(require('connect-assets')({build: false, src: path.join(basePath, 'client')}));
-        app.use('/static', express.static(path.join(basePath, 'client')));
+        app.use('/images', express.static(path.join(basePath, 'client/images')));
         app.set('views', path.join(basePath, 'views'));
     });
 

@@ -2,9 +2,13 @@
 html
     head
         title Scenic
-        link(href='/static/images/favicon.png', rel='icon', type='image/x-icon')
-        != css('scenic.css')
-        != js('scenic-client.js')
+        link(href='/images/favicon.png', rel='icon', type='image/x-icon')
+
+        != css('scenic')
+        != css('bootstrap-responsive.min')
+        != css('bootstrap.min')
+
+        != js('scenic-client')
         include templates
     body
         block content
