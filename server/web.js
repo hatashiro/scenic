@@ -5,9 +5,8 @@ var express = require('express'),
     settings = require('../settings');
 
 function web() {
-    var web = this;
-    var app = express();
-    web.server = http.createServer(app);
+    var app = this.app = express();
+    this.server = http.createServer(app);
 
     app.configure(function() {
         var basePath = path.join(__dirname, '..');

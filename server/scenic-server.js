@@ -3,15 +3,11 @@ var web = require('./web'),
     settings = require('../settings');
 
 function scenic() {
-    var scenic = this;
-
     // create express3 web server
-    scenic.web = new web();
+    this.web = new web();
 
     // create socket listening on express3
-    scenic.socket = new socket(scenic.web.server);
-
-    return scenic;
+    this.socket = new socket(this.web.server);
 }
 
 scenic.prototype.run = function() {
