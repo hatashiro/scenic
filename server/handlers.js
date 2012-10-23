@@ -1,5 +1,6 @@
-var handlers = module.exports = {};
+var settings = require('../settings'),
+    handlers = module.exports = {};
 
 handlers.index = function(req, res) {
-    res.send('hello, world!');
+    res.render('index.jade', {settings: JSON.stringify(settings)});
 }

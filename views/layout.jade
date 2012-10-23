@@ -1,0 +1,10 @@
+!!! 5
+html
+    head
+        title Scenic
+        link(href='/static/images/favicon.png', rel='icon', type='image/x-icon')
+        != css('scenic.css')
+        != js('scenic-client.js')
+        include templates
+    body
+        block content
