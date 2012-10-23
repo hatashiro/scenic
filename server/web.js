@@ -1,11 +1,13 @@
 var express = require('express'),
     path = require('path'),
+    http = require('http'),
     handlers = require('./handlers'),
     settings = require('../settings');
 
 function web() {
     var web = this;
-    var app = web.server = express();
+    var app = express();
+    web.server = http.createServer(app);
 
     app.configure(function() {
         var basePath = path.join(__dirname, '..');
