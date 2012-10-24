@@ -1,2 +1,10 @@
-//
-    nothing here yet!
+script#navbar_template(type='text/html')
+    ul.nav
+        li.logo.font-8bit
+            a(href='/') Scenic
+        {{#channel}}
+        li
+            a(href='#') Chat
+        li
+            a(href='#') Pictures
+        {{/channel}}

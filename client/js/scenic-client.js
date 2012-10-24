@@ -3,7 +3,9 @@
 //= require 'lib/underscore-min.js'
 //= require 'lib/backbone-min.js'
 //= require 'lib/ICanHaz.min.js'
+//= require_tree 'views'
 
-(function() {
-    // nothing here!
+$(function() {
+    // create app view
+    window.app_view = new AppView();
 });

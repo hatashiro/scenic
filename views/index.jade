@@ -1,4 +1,20 @@
-extends layout
+!!! 5
+html
+    head
+        title Scenic
+        link(href='/images/favicon.png', rel='icon', type='image/x-icon')
 
-block content
-    p hello, world!
+        != css('bootstrap.min')
+        != css('bootstrap-responsive.min')
+        != css('scenic')
+
+        include templates
+    body
+        .navbar.navbar-inverse.navbar-fixed-top
+            .navbar-inner
+                #Navbar
+
+        #content
+
+        script(type='text/javascript', src='/socket.io/socket.io.js')
+        != js('scenic-client')

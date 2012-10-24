@@ -1,1 +1,12 @@
-/* nothing here yet! */
+@import url(http://fonts.googleapis.com/css?family=Russo+One);
+
+.font-8bit {
+    font-family: 'Russo One', sans-serif;
+}
+
+#Navbar li.logo a {
+   font-size: 25px;
+   -webkit-transition: all .2s linear;
+   -moz-transition: all .2s linear;
+   transition: all .2s linear;
+}
