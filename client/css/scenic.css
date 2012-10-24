@@ -1,5 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Russo+One);
 
+body {
+    background: url('/images/shl.png');
+}
+
 .font-8bit {
     font-family: 'Russo One', sans-serif;
 }
