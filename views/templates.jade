@@ -1,6 +1,6 @@
 script#navbar_template(type='text/html')
     ul.nav
-        li.logo.font-8bit
+        li.logo.logo-font
             a(href='/') Scenic
         {{#channel}}
         li
@@ -8,3 +8,12 @@ script#navbar_template(type='text/html')
         li
             a(href='#') Pictures
         {{/channel}}
+
+script#index_template(type='text/html')
+    .container
+        h1.logo-font Scenic
+
+script#channel_template(type='text/html')
+    .container
+        h1.logo-font Scenic
+        h2 {{channel}}

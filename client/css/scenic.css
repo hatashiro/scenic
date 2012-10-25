@@ -4,7 +4,7 @@ body {
     background: url('/images/shl.png');
 }
 
-.font-8bit {
+.logo-font{
     font-family: 'Russo One', sans-serif;
 }
 
@@ -13,4 +13,8 @@ body {
    -webkit-transition: all .2s linear;
    -moz-transition: all .2s linear;
    transition: all .2s linear;
+}
+
+#content {
+    margin-top:80px;
 }
