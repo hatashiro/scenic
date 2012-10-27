@@ -4,7 +4,7 @@ body {
     background: url('/images/shl.png');
 }
 
-.logo-font{
+.logo-font {
     font-family: 'Russo One', sans-serif;
 }
 
@@ -17,4 +17,50 @@ body {
 
 #content {
     margin-top:80px;
+}
+
+.center-aligned {
+    text-align: center;
+}
+
+.left-aligned {
+    text-align: left;
+}
+
+.logo {
+    font-size: 100px;
+    color: #222;
+}
+
+.logo-desc {
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.title {
+    margin-top: 50px;
+    font-size: 40px;
+    color: #999;
+    text-shadow: 1px 1px #222;
+}
+
+.how-to-use {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.how-to-use dt, .how-to-use dd {
+    margin-bottom: 10px;
+}
+
+.how-to-use dt.last, .how-to-use dd.last {
+    margin-bottom: 0px;
+}
+
+.copyright {
+    font-size: 15px;
+    color: #777;
+    margin-top: 50px;
 }

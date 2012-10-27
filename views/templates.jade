@@ -10,8 +10,32 @@ script#navbar_template(type='text/html')
         {{/channel}}
 
 script#index_template(type='text/html')
-    .container
-        h1.logo-font Scenic
+    .container.center-aligned
+        h1.logo-font.logo Scenic
+        p.lead.logo-desc See great pictures with your friends!
+
+        h1.logo-font.title Scenic?
+        p.lead Scenic is a Node.js based album app in which you can see great pictures with your friends in realtime.
+
+        h1.logo-font.title How to Use?
+        dl.dl-horizontal.how-to-use.lead
+            dt Step 1.&nbsp;
+            dd Join a channel.
+
+            dt Step 2.&nbsp;
+            dd Upload a picture.
+
+            dt Step 3.&nbsp;
+            dd The picture you uploaded is synced and all your friends in the channel always see the same picture.
+
+            dt.last Step 4.&nbsp;
+            dd.last Profit!
+
+        h1.logo-font.title Fork me on GitHub!
+        p.lead
+            a(href='https://github.com/noraesae/scenic', target='_blank') Yes, I really love open source.
+
+        p.lead.copyright The MIT License (MIT) Copyright (c) 2012 <a href='https://github.com/noraesae' target='_blank'>HyeonJe Jun</a>.
 
 script#channel_template(type='text/html')
     .container
