@@ -1,3 +1,6 @@
+// register mongoose models.
+require('./models')()
+
 var web = require('./web'),
     socket = require('./socket'),
     settings = require('../settings');
