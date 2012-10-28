@@ -37,11 +37,41 @@ body {
     margin-top: 20px;
 }
 
+.join-channel {
+    padding-bottom: 55px;
+}
+
+.join-channel input.text {
+    height: 50px;
+    width: 385px;
+    padding-left: 15px;
+    font-size: 30px;
+    line-height: 50px;
+    -webkit-border-radius: 15px 0 0 15px;
+    -moz-border-radius: 15px 0 0 15px;
+    border-radius: 15px 0 0 15px;
+}
+
+.join-channel input.btn.submit {
+    -webkit-border-radius: 0 15px 15px 0;
+    -moz-border-radius: 0 15px 15px 0;
+    border-radius: 0 15px 15px 0;
+    height: 60px;
+    font-size: 30px;
+}
+
 .title {
     margin-top: 50px;
     font-size: 40px;
     color: #999;
     text-shadow: 1px 1px #222;
+}
+
+.title.join-channel-title {
+    padding-top: 45px;
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: #555;
 }
 
 .how-to-use {

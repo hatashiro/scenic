@@ -14,6 +14,11 @@ script#index_template(type='text/html')
         h1.logo-font.logo Scenic
         p.lead.logo-desc See great pictures with your friends!
 
+        h1.logo-font.title.join-channel-title Join a channel.
+        form.input-append.join-channel(onsubmit='return join_channel();')
+            input#channel_name.text.lead(type='text', placeholder='#channel')
+            input.btn.submit.lead(type='submit', value='Enter')
+
         h1.logo-font.title Scenic?
         p.lead Scenic is a Node.js based album app in which you can see great pictures with your friends in realtime.
 
