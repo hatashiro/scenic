@@ -4,6 +4,7 @@
 //= require 'lib/backbone-min.js'
 //= require 'lib/ICanHaz.min.js'
 //= require 'router.js'
+//= require 'models.js'
 //= require_tree 'views'
 
 $(function() {
