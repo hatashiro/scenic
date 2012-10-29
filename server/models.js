@@ -3,7 +3,6 @@ var mongoose = require('mongoose'),
 
 module.exports = function() {
     var Pictures = new Schema({
-        id: String,
         channel: String,
         width: Number,
         height: Number,
