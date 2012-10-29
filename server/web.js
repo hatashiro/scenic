@@ -7,6 +7,9 @@ var express = require('express'),
 function web() {
     var app = this.app = express();
     this.server = http.createServer(app);
+    this.socket = null;
+
+    var route_handlers = new handlers(this);
 
     app.configure(function() {
         var basePath = path.join(__dirname, '..');
@@ -34,8 +37,13 @@ function web() {
 
     app.map({
         '/': {
-            get: handlers.index,
-        }
+            get: route_handlers.index,
+        },
+        '/channel': {
+            '/:name': {
+                get: route_handlers.channel.get,
+            },
+        },
     });
 }
 

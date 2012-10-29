@@ -11,7 +11,7 @@ function scenic() {
     this.web = new web();
 
     // create socket listening on express3
-    this.socket = new socket(this.web.server);
+    this.web.socket = new socket(this.web.server);
 }
 
 scenic.prototype.run = function() {
