@@ -29,9 +29,11 @@ module.exports = {
         }
 
         this.disconnect = function() {
-            this.channel.removeUser(this);
-            this.channel.notice(this.nick+" has left.");
-            this.channel.updateUserlist();
+            if(this.channel) {
+                this.channel.removeUser(this);
+                this.channel.notice(this.nick+" has left.");
+                this.channel.updateUserlist();
+            }
         }
     },
 

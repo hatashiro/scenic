@@ -71,7 +71,9 @@ function socket(web) {
         });
 
         socket.on('disconnect', function() {
-            user.disconnect();
+            if(user) {
+                user.disconnect();
+            }
         });
     });
 }
