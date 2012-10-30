@@ -3,10 +3,6 @@ var Router = Backbone.Router.extend({
         '': 'index',
         ':channel': 'channel'
     },
-    index: function() {
-        window.app_view.render({page: 'index'});
-    },
-    channel: function(channel) {
-        window.app_view.render({page: 'channel', channel: channel});
-    }
+    index: handlers.index,
+    channel: handlers.channel
 });
