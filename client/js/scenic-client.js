@@ -3,6 +3,7 @@
 //= require 'lib/underscore-min.js'
 //= require 'lib/backbone-min.js'
 //= require 'lib/ICanHaz.min.js'
+//= require 'utils.js'
 //= require 'handlers.js'
 //= require 'router.js'
 //= require 'models.js'
