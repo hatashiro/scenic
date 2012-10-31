@@ -25,11 +25,13 @@ function toggle_chat(button) {
     if(window.chat_view) {
         if(window.chat_view.isHidden()) {
             window.chat_view.show();
-            $(button).text('Chat Off');
+            $('#ChatButton').addClass('on');
+            $('#ChatButton').removeClass('off');
         }
         else {
             window.chat_view.hide();
-            $(button).text('Chat On');
+            $('#ChatButton').addClass('off');
+            $('#ChatButton').removeClass('on');
         }
     }
 }

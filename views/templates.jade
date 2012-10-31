@@ -4,7 +4,9 @@ script#navbar_template(type='text/html')
             a(href='/') Scenic
         {{#channel}}
         li
-            a(href='\#{{ channel }}', onclick='toggle_chat(this)') Chat Off
+            a#ChatButton(href='\#{{ channel }}', onclick='toggle_chat(this)').on
+                span.on-text Chat On
+                span.off-text Chat Off
         li
             a(href='#') Pictures
         {{/channel}}

@@ -15,6 +15,11 @@ body {
    transition: all .2s linear;
 }
 
+#ChatButton.on .on-text { display: none; }
+#ChatButton.on .off-text { display: inline; }
+#ChatButton.off .on-text { display: inline; }
+#ChatButton.off .off-text { display: none; }
+
 #content {
     margin-top:80px;
 }

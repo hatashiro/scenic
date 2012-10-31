@@ -21,6 +21,33 @@ var ChatView = Backbone.View.extend({
 
         // open input box
         this.openInputBox();
+
+        // handle 'enter' and 'esc' key for show or hide chat view.
+        $(document).bind('keyup.chat', function(e) {
+            if(e.which == 13) {
+                // enter
+                if(_this.isHidden()) {
+                    _this.show();
+
+                    // update button text
+                    $('#ChatButton').addClass('on');
+                    $('#ChatButton').removeClass('off');
+                }
+                else {
+                    _this.openInputBox();
+                }
+            }
+            else if(e.which == 27) {
+                // esc
+                if(!_this.isHidden()) {
+                    _this.hide();
+
+                    // update button text
+                    $('#ChatButton').addClass('off');
+                    $('#ChatButton').removeClass('on');
+                }
+            }
+        });
     },
     openInputBox: function() {
         if(this.object) {
@@ -51,5 +78,8 @@ var ChatView = Backbone.View.extend({
         if(this.object) {
             this.object.remove();
         }
+
+        // unbind document handler
+        $(document).unbind('keyup.chat');
     },
 });
