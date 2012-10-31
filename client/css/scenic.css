@@ -94,3 +94,118 @@ body {
     color: #777;
     margin-top: 50px;
 }
+
+#Chat {
+    position: fixed;
+    top: 41px;
+    left: 0px;
+    background-color: black;
+    color: white;
+    margin: 0px;
+    width: 420px;
+    padding: 3px 5px;
+    opacity: 0.6;
+    filter: alpha(opacity = 60);
+}
+
+#Chat:hover {
+    opacity: 0.8;
+    filter: alpha(opacity = 80);
+    cursor: pointer;
+}
+
+#Chat.hidden {
+    display: none;
+}
+
+#Chat dl {
+    width: 100%;
+    margin: 0px;
+    padding: none;
+}
+
+#Chat dl dt {
+    width: 90px;
+    font-weight: bold;
+}
+
+#Chat dl dd {
+    margin-left: 100px;
+    font-weight: normal;
+    white-space:pre-wrap;
+    white-space:-moz-pre-wrap;
+    white-space:-pre-wrap;
+    white-space:-o-pre-wrap;
+    word-wrap:break-word;
+}
+
+#Chat .input-box {
+    margin-top: 3px;
+    border-top: 1px solid #666;
+    display: none;
+}
+
+#Chat .input-box .nick {
+    float: left;
+    width: 90px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+#Chat .input-box .chat-text-input-wrapper {
+    margin-left: 100px;
+    height: 20px;
+    overflow: hidden;
+}
+#Chat .input-box .chat-text-input-wrapper input.chat-input {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    background-color: transparent;
+    color: white;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+@media(max-width: 979px) {
+    #Chat {
+        top: 51px;
+    }
+}
+
+@media(max-width: 767px) {
+    #Chat {
+        width: 90%;
+        left: 5%;
+        margin: 0px auto;
+        padding: 0px;
+    }
+
+    #Chat dl dd {
+        margin-left: 10px;
+    }
+
+    #Chat .input-box .chat-text-input-wrapper {
+        margin-left: 10px;
+    }
+
+    #Chat .input-box .nick {
+        display: none;
+    }
+}

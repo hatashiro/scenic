@@ -20,3 +20,16 @@ function join_channel() {
 
     return false;
 }
+
+function toggle_chat(button) {
+    if(window.chat_view) {
+        if(window.chat_view.isHidden()) {
+            window.chat_view.show();
+            $(button).text('Chat Off');
+        }
+        else {
+            window.chat_view.hide();
+            $(button).text('Chat On');
+        }
+    }
+}

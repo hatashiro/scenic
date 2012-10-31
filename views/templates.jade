@@ -4,7 +4,7 @@ script#navbar_template(type='text/html')
             a(href='/') Scenic
         {{#channel}}
         li
-            a(href='#') Chat
+            a(href='\#{{ channel }}', onclick='toggle_chat(this)') Chat Off
         li
             a(href='#') Pictures
         {{/channel}}
@@ -46,3 +46,19 @@ script#channel_template(type='text/html')
     .container
         h1.logo-font Scenic
         h2 {{channel}}
+
+script#chat_template(type='text/html')
+    #Chat
+        dl.dl-horizontal.chat-log
+            dt.text-info notice
+            dd.text-info noraesae has joined.
+
+            dt noraesae
+            dd hello, world!
+
+            dt azunyann
+            dd keion daisuki!
+        .input-box
+            .nick noraesae
+            .chat-text-input-wrapper
+                input.chat-input(type='text')

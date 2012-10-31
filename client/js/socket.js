@@ -4,6 +4,9 @@ function Socket() {
 
     this.io.on('connected', function(data) {
         console.log('Scenic socket connected.');
+
+        // create chat view
+        window.chat_view = new ChatView();
     });
 
     this.io.on('error', function(data) {
