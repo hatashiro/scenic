@@ -1,12 +1,19 @@
 var handlers = {
     index: function() {
         window.app_view.render({page: 'index'});
+
+        // delete socket if exists
+        if(window.socket) {
+            window.socket.disconnect();
+            window.socket = null;
+        }
     },
 
     channel: function(channel) {
         window.app_view.render({page: 'channel', channel: channel});
 
-        // create socket.io socket
-        window.socket = new socket();
+        // create new socket.io socket
+        if(window.socket) window.socket.disconnect();
+        window.socket = new Socket();
     }
 }

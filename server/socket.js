@@ -70,6 +70,14 @@ function socket(web) {
             user.changeNick(data.nick);
         });
 
+        socket.on('force_disconnect', function() {
+            if(user) {
+                user.disconnect();
+            }
+
+            socket.disconnect();
+        });
+
         socket.on('disconnect', function() {
             if(user) {
                 user.disconnect();
