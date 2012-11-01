@@ -60,16 +60,16 @@ module.exports = {
 
         this.nickDuplicated = function(nick) {
             var usernicks = [];
-            for(var user in this.users) {
-                usernicks.put(user.nick);
+            for(var i in this.users) {
+                usernicks.push(this.users[i].nick);
             }
-            return (nick in usernicks);
+            return _.contains(usernicks, nick);
         }
 
         this.transmit = function(msg, from) {
             _.each(this.users, function(user) {
                 if(user != from) {
-                    user.socket.emit('chat', {from: user.nick, msg: msg, from_me: false});
+                    user.socket.emit('chat', {from: from.nick, msg: msg, from_me: false});
                 }
             });
         };
