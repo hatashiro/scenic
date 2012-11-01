@@ -15,7 +15,7 @@ function Socket() {
 
     this.io.on('error', function(data) {
         // log the error
-        console.log('Scnic sockec exception: '+data.type);
+        console.log('Scenic socket exception: '+data.type);
     });
 
     this.disconnect = function() {
