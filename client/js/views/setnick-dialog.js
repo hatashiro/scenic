@@ -39,6 +39,10 @@ var SetNickDialogView = Backbone.View.extend({
         this.object.on('hidden', function() {
             _this.object.remove();
         });
+        this.object.on('shown', function() {
+            // set focus
+            $('input.nickname', _this.object).focus();
+        });
         $("input.nickname", this.object).keyup(function(e) {
             if(e.which == 13) {
                 // enter
@@ -48,9 +52,6 @@ var SetNickDialogView = Backbone.View.extend({
             // prevent propagation to body(keyup.chat)
             e.stopPropagation();
         });
-
-        // set focus
-        $('input.nickname', this.object).focus();
     },
     remove: function() {
         this.object.remove();
