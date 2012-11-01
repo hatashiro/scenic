@@ -22,6 +22,10 @@ var SetNickDialogView = Backbone.View.extend({
         $('button.set-nick', this.object).click(function(e) {
             var nick = $("input.nickname", _this.object).val();
 
+            if(nick[0] == '@') {
+                nick = nick.substring(1);
+            }
+
             if(!nick) return;
 
             if(/\s/g.test(nick)) {
