@@ -10,17 +10,10 @@ var ChatView = Backbone.View.extend({
 
         // set chat handlers
         this.object.click(function(e) {
-            _this.openInputBox();
-        });
-
-        $("input.chat-input", this.object).blur(function(e) {
-            $(".input-box", _this.object).hide();
+            _this.focusInput();
         });
 
         $('body').append(this.object);
-
-        // open input box
-        this.openInputBox();
 
         // handle 'enter' and 'esc' key for show or hide chat view.
         $(document).bind('keyup.chat', function(e) {
@@ -34,7 +27,7 @@ var ChatView = Backbone.View.extend({
                     $('#ChatButton').removeClass('off');
                 }
                 else {
-                    _this.openInputBox();
+                    _this.focusInput();
                 }
             }
             else if(e.which == 27) {
@@ -49,16 +42,15 @@ var ChatView = Backbone.View.extend({
             }
         });
     },
-    openInputBox: function() {
+    focusInput: function() {
         if(this.object) {
-            $(".input-box", this.object).show();
             $("input.chat-input", this.object).focus();
         }
     },
     show: function() {
         if(this.object) {
             this.object.removeClass('hidden');
-            this.openInputBox();
+            this.focusInput();
         }
     },
     hide: function() {
@@ -81,5 +73,38 @@ var ChatView = Backbone.View.extend({
 
         // unbind document handler
         $(document).unbind('keyup.chat');
+    },
+    setNick: function(nick) {
+        if(!this.object) return;
+
+        $('.input-box .nick', this.object).text(nick);
+    },
+    chatlog: function(from, msg, from_me) {
+        if(!this.object) return;
+
+        var chatlog = $(ich.chatlog_template({from: from, msg: msg}));
+        if(from_me) chatlog.addClass('from_me');
+
+        $('.chat-log', this.object).append(chatlog);
+    },
+    notice: function(msg) {
+        if(!this.object) return;
+
+        $('.chat-log', this.object).append(ich.notice_template({msg: msg}));
+    },
+    onChatInput: function(handler) {
+        var _this = this;
+        var chat_input = $("input.chat-input", this.object);
+        chat_input.keyup(function(e) {
+            if(e.which == 13 && !_this.isHidden()) {
+                // enter
+                var msg = chat_input.val();
+                if(msg) {
+                    chat_input.val('');
+                    handler(msg);
+                    _this.focusInput();
+                }
+            }
+        });
     },
 });

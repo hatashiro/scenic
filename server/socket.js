@@ -26,7 +26,7 @@ function socket(web) {
             }
 
             user = new User(data.nick, socket);
-            socket.emit('user_created', {});
+            socket.emit('user_created', {nick: user.nick});
         });
 
         socket.on('join_channel', function(data) {

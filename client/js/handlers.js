@@ -17,6 +17,6 @@ var handlers = {
 
         // create new socket.io socket
         if(window.socket) window.socket.disconnect();
-        window.socket = new Socket();
+        window.socket = new Socket(channel);
     }
 }

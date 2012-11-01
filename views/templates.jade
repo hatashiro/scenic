@@ -52,18 +52,18 @@ script#channel_template(type='text/html')
 script#chat_template(type='text/html')
     #Chat
         dl.dl-horizontal.chat-log
-            dt.text-info notice
-            dd.text-info noraesae has joined.
-
-            dt noraesae
-            dd hello, world!
-
-            dt azunyann
-            dd keion daisuki!
         .input-box
-            .nick noraesae
+            .nick
             .chat-text-input-wrapper
                 input.chat-input(type='text')
+
+script#chatlog_template(type='text/html')
+    dt {{ from }}
+    dd {{ msg }}
+
+script#notice_template(type='text/html')
+    dt.text-info notice
+    dd.text-info {{ msg }}
 
 script#set_nick_template(type='text/html')
     #SetNick.modal.hide.fade(tabindex="-1", role="dialog", area-labelledby="setNickLabel", aria-hidden="true")
