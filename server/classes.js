@@ -60,7 +60,7 @@ module.exports = {
 
         this.nickDuplicated = function(nick) {
             var usernicks = [];
-            for(var user in users) {
+            for(var user in this.users) {
                 usernicks.put(user.nick);
             }
             return (nick in usernicks);
