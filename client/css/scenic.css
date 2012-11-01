@@ -149,8 +149,10 @@ body {
 }
 
 #Chat .input-box {
-    margin-top: 3px;
-    border-top: 1px solid #666;
+    margin-top: 5px;
+    border-top: 1px solid #333;
+    padding-top: 4px;
+    padding-bottom: 3px;
 }
 
 #Chat .input-box .nick {
