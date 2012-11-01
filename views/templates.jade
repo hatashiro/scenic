@@ -64,3 +64,13 @@ script#chat_template(type='text/html')
             .nick noraesae
             .chat-text-input-wrapper
                 input.chat-input(type='text')
+
+script#set_nick_template(type='text/html')
+    #SetNick.modal.hide.fade(tabindex="-1", role="dialog", area-labelledby="setNickLabel", aria-hidden="true")
+        .modal-header
+            h3 Set your nickname.
+        .modal-body
+            input.modal-big-text.nickname(type='text', placeholder='@nick')
+        .modal-footer
+            button.btn(onclick="location.href='#';", data-dismiss='modal', area-hidden='true') Close
+            button.btn.btn-primary.set-nick Enter

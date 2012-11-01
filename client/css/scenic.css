@@ -214,3 +214,21 @@ body {
         display: none;
     }
 }
+
+.modal input.modal-big-text {
+    width: 80%;
+    margin: 0px auto;
+    display: block;
+    height: 40px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    font-size: 30px;
+    line-height: 40px;
+    padding-left: 10px;
+}
+
+.modal .modal-body .alert.no-whitespace {
+    width: 80%;
+    margin: 15px auto 0px;
+}
