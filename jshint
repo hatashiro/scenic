@@ -1,0 +1,2 @@
+#!/bin/sh
+find . \( ! -regex '.*/node_modules/.*' \) \( ! -regex '.*/lib/.*' \) -name "*.js" -exec jshint {} \;
