@@ -9,6 +9,24 @@ script#navbar_template(type='text/html')
                 span.off-text Chat Off
         li
             a(href='#') Pictures
+    ul.nav.pull-right
+        li.dropdown
+            a.dropdown-toggle(href='\#{{ channel }}', data-toggle="dropdown")
+                span.at @
+                span.nick
+                b.caret
+            ul.dropdown-menu(role="menu", area-labelledby="nick_dropdown")
+                li
+                    a(href='\#{{ channel }}') Change nick
+        li.dropdown
+            a.dropdown-toggle(href='\#{{ channel }}', data-toggle="dropdown")
+                span.sharp #
+                span {{ channel }}
+                b.caret
+            ul.dropdown-menu(role="menu", area-labelledby="channel_dropdown")
+                li
+                    a(href='\#{{ channel }}') Move to another channel
+
         {{/channel}}
 
 script#index_template(type='text/html')

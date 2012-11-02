@@ -1,13 +1,19 @@
 var NavbarView = Backbone.View.extend({
     channel: null,
+    object: null,
     initialize: function(channel) {
         if(channel) this.channel = channel;
 
         this.render(channel);
     },
     render: function(channel) {
-        var nav_bar = ich.navbar_template({channel: channel});
+        this.object = $(ich.navbar_template({channel: channel}));
 
-        $('#Navbar').html(nav_bar);
+        $('#Navbar').html(this.object);
+    },
+    setNick: function(nick) {
+        if(!this.object) return;
+
+        $('span.nick', this.object).text(nick);
     }
 });

@@ -23,6 +23,7 @@ function Socket(channel) {
 
     this.io.on('channel_joined', function(data) {
         window.chat_view.setNick(data.nick);
+        window.app_view.navbar_view.setNick(data.nick);
 
         window.chat_view.focusInput();
 
