@@ -50,5 +50,5 @@ function Socket(channel) {
         delete(window.chat_view);
         this.io.emit('force_disconnect');
         console.log('Scenic socket disconnected.');
-    }
+    };
 }

@@ -12,12 +12,12 @@ module.exports = {
             this.channel.notice(this.nick+" has joined.");
             this.socket.emit('channel_joined', {nick:this.nick, channel: channel.model.name});
             this.channel.updateUserlist();
-        }
+        };
 
         this.say = function(msg) {
             this.socket.emit('chat', {from: this.nick, msg: msg, from_me: true});
             this.channel.transmit(msg, from=this);
-        }
+        };
 
         this.changeNick = function(nick) {
             var old_nick = this.nick;
@@ -26,7 +26,7 @@ module.exports = {
             this.channel.notice(old_nick+" is now known as "+this.nick);
             this.socket.emit('nick_changed', {nick:this.nick});
             this.channel.updateUserlist();
-        }
+        };
 
         this.disconnect = function() {
             if(this.channel) {
@@ -34,7 +34,7 @@ module.exports = {
                 this.channel.notice(this.nick+" has left.");
                 this.channel.updateUserlist();
             }
-        }
+        };
     },
 
     Channel: function(model) {
@@ -46,17 +46,17 @@ module.exports = {
             this.preventNickDuplication(user);
             this.users.push(user);
             user.channel = this;
-        }
+        };
 
         this.removeUser = function(user) {
             this.users.splice(this.users.indexOf(user), 1);
-        }
+        };
 
         this.preventNickDuplication = function(user) {
             while(this.nickDuplicated(user.nick)) {
                 user.nick = user.nick + '_';
             }
-        }
+        };
 
         this.nickDuplicated = function(nick) {
             var usernicks = [];
@@ -64,7 +64,7 @@ module.exports = {
                 usernicks.push(this.users[i].nick);
             }
             return _.contains(usernicks, nick);
-        }
+        };
 
         this.transmit = function(msg, from) {
             _.each(this.users, function(user) {
@@ -85,5 +85,5 @@ module.exports = {
                 user.socket.emit('update_userlist', {userlist: this.users});
             });
         };
-    },
-}
+    }
+};

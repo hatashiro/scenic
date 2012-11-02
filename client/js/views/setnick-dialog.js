@@ -5,7 +5,9 @@ var SetNickDialogView = Backbone.View.extend({
         this.handler = _.once(handler);
 
         // delete dialog if exists
-        (window._bootstrap_dialog && window._bootstrap_dialog.remove());
+        if(window._bootstrap_dialog) {
+            window._bootstrap_dialog.remove();
+        }
         window._bootstrap_dialog = this;
 
         this.render();
@@ -63,5 +65,5 @@ var SetNickDialogView = Backbone.View.extend({
     },
     hide: function() {
         this.object.modal('hide');
-    },
+    }
 });

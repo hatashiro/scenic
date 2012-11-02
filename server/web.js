@@ -4,7 +4,7 @@ var express = require('express'),
     handlers = require('./handlers'),
     settings = require('../settings');
 
-function web() {
+function Web() {
     var app = this.app = express();
     this.server = http.createServer(app);
     this.socket = null;
@@ -14,7 +14,7 @@ function web() {
     app.configure(function() {
         var basePath = path.join(__dirname, '..');
         app.use(require('connect-assets')({build: false, src: path.join(basePath, 'client')}));
-        app.use('/images', express.static(path.join(basePath, 'client/images')));
+        app.use('/images', express['static'](path.join(basePath, 'client/images')));
         app.set('views', path.join(basePath, 'views'));
     });
 
@@ -37,19 +37,19 @@ function web() {
 
     app.map({
         '/': {
-            get: route_handlers.index,
+            get: route_handlers.index
         },
         '/channel': {
             '/:name': {
-                get: route_handlers.channel.get,
-            },
-        },
+                get: route_handlers.channel.get
+            }
+        }
     });
 }
 
-web.prototype.run = function() {
+Web.prototype.run = function() {
     this.server.listen(settings.port);
     console.log('Express now listening on port %s', settings.port);
-}
+};
 
-module.exports = web;
+module.exports = Web;

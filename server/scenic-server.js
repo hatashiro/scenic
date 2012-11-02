@@ -1,25 +1,25 @@
 // register mongoose models.
-require('./models')();
+(require('./models')());
 
-var web = require('./web'),
-    socket = require('./socket'),
+var Web = require('./web'),
+    Socket = require('./socket'),
     settings = require('../settings'),
     mongoose = require('mongoose');
 
-function scenic() {
+function Scenic() {
     // create express3 web server
-    this.web = new web();
+    this.web = new Web();
 
     // create socket listening on express3
-    this.web.socket = new socket(this.web.server);
+    this.web.socket = new Socket(this.web.server);
 }
 
-scenic.prototype.run = function() {
+Scenic.prototype.run = function() {
     // connect mongoose
     mongoose.connect(settings.mongo_uri);
 
     this.web.run();
     console.log('Scenic is running on port %s!', settings.port);
-}
+};
 
-module.exports = scenic;
+module.exports = Scenic;

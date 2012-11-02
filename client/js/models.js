@@ -1,7 +1,7 @@
 var Channel = Backbone.Model.extend({
     defaults: {
         id: '',
-        current_picture: '',
+        current_picture: ''
     },
     urlRoot: '/channel'
 });

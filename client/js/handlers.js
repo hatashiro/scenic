@@ -9,7 +9,9 @@ var handlers = {
         }
 
         // delete dialog if exists
-        (window._bootstrap_dialog && window._bootstrap_dialog.remove());
+        if(window._bootstrap_dialog) {
+            window._bootstrap_dialog.remove();
+        }
     },
 
     channel: function(channel) {
@@ -19,4 +21,4 @@ var handlers = {
         if(window.socket) window.socket.disconnect();
         window.socket = new Socket(channel);
     }
-}
+};

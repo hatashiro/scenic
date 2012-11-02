@@ -7,7 +7,7 @@ var socketio = require('socket.io'),
 var ChannelModel = mongoose.model('Channel'),
     PictureModel = mongoose.model('Picture');
 
-function socket(web) {
+function Socket(web) {
     var io = this.io = socketio.listen(web);
     console.log('Socket.io now listening on Express');
 
@@ -86,4 +86,4 @@ function socket(web) {
     });
 }
 
-module.exports = socket;
+module.exports = Socket;
