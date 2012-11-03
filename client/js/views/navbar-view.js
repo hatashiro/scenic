@@ -15,5 +15,8 @@ var NavbarView = Backbone.View.extend({
         if(!this.object) return;
 
         $('span.nick', this.object).text(nick);
+    },
+    setChangeNickHandler: function(handler) {
+        $('a.change-nick', this.object).click(handler);
     }
 });

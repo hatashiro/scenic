@@ -17,7 +17,7 @@ script#navbar_template(type='text/html')
                 b.caret
             ul.dropdown-menu(role="menu", area-labelledby="nick_dropdown")
                 li
-                    a(href='\#{{ channel }}') Change nick
+                    a.change-nick(href='\#{{ channel }}') Change nick
         li.dropdown
             a.dropdown-toggle(href='\#{{ channel }}', data-toggle="dropdown")
                 span.sharp #
@@ -92,3 +92,13 @@ script#set_nick_template(type='text/html')
         .modal-footer
             button.btn(onclick="location.href='#';", data-dismiss='modal', area-hidden='true') Close
             button.btn.btn-primary.set-nick Enter
+
+script#change_nick_template(type='text/html')
+    #ChangeNick.modal.hide.fade(tabindex="-1", role="dialog", area-labelledby="changeNickLabel", aria-hidden="true")
+        .modal-header
+            h3 Set your new nickname.
+        .modal-body
+            input.modal-big-text.nickname(type='text', placeholder='@nick')
+        .modal-footer
+            button.btn(data-dismiss='modal', area-hidden='true') Close
+            button.btn.btn-primary.change-nick Enter

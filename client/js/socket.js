@@ -24,6 +24,11 @@ function Socket(channel) {
     this.io.on('channel_joined', function(data) {
         window.chat_view.setNick(data.nick);
         window.app_view.navbar_view.setNick(data.nick);
+        window.app_view.navbar_view.setChangeNickHandler(function(e) {
+            (new ChangeNickDialogView(function(nick) {
+                _this.io.emit('change_nick', {nick: nick});
+            }));
+        });
 
         window.chat_view.focusInput();
 
@@ -39,6 +44,11 @@ function Socket(channel) {
 
     this.io.on('notice', function(data) {
         window.chat_view.notice(data.msg);
+    });
+
+    this.io.on('nick_changed', function(data) {
+        window.chat_view.setNick(data.nick);
+        window.app_view.navbar_view.setNick(data.nick);
     });
 
     this.io.on('error', function(data) {
