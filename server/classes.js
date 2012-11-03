@@ -53,17 +53,19 @@ module.exports = {
         };
 
         this.preventNickDuplication = function(user) {
-            while(this.nickDuplicated(user.nick)) {
+            while(this.nickDuplicated(user)) {
                 user.nick = user.nick + '_';
             }
         };
 
-        this.nickDuplicated = function(nick) {
+        this.nickDuplicated = function(user) {
             var usernicks = [];
             for(var i in this.users) {
-                usernicks.push(this.users[i].nick);
+                if(this.users[i] != user) {
+                    usernicks.push(this.users[i].nick);
+                }
             }
-            return _.contains(usernicks, nick);
+            return _.contains(usernicks, user.nick);
         };
 
         this.transmit = function(msg, from) {
