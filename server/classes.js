@@ -20,6 +20,10 @@ module.exports = {
         };
 
         this.changeNick = function(nick) {
+            if(this.nick == nick) {
+                return;
+            }
+
             var old_nick = this.nick;
             this.nick = nick;
             this.channel.preventNickDuplication(this);
