@@ -52,7 +52,7 @@ var SetNickDialogView = Backbone.View.extend({
         $("input.nickname", this.object).keyup(function(e) {
             if(e.which == 13) {
                 // enter
-                $('button.set-nick').click();
+                $('button.set-nick', _this.object).click();
             }
 
             // prevent propagation to body(keyup.chat)
