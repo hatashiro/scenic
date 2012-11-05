@@ -18,5 +18,8 @@ var NavbarView = Backbone.View.extend({
     },
     setChangeNickHandler: function(handler) {
         $('a.change-nick', this.object).click(handler);
+    },
+    setMoveChannelHandler: function(handler) {
+        $('a.move-channel', this.object).click(handler);
     }
 });

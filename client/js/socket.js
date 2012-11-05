@@ -29,6 +29,9 @@ function Socket(channel) {
                 _this.io.emit('change_nick', {nick: nick});
             }));
         });
+        window.app_view.navbar_view.setMoveChannelHandler(function(e) {
+            (new MoveChannelDialogView());
+        });
 
         window.chat_view.focusInput();
 
