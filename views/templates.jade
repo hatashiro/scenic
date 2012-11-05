@@ -1,7 +1,7 @@
 script#navbar_template(type='text/html')
     ul.nav
         li.logo.logo-font
-            a(href='/') Scenic
+            a(href='/#') Scenic
         {{#channel}}
         li
             a#ChatButton(href='\#{{ channel }}', onclick='toggle_chat(this)').on
