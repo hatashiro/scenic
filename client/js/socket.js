@@ -8,10 +8,16 @@ function Socket(channel) {
     this.io.on('connected', function(data) {
         console.log('Scenic socket connected.');
 
-        // show set nickname dialog
-        (new SetNickDialogView(function(nick) {
-            _this.io.emit('create_user', {nick: nick});
-        }));
+        if(window.nick_in_use) {
+            // if there's already global nickname in use, use it.
+            _this.io.emit('create_user', {nick: window.nick_in_use});
+        }
+        else {
+            // else, show set nickname dialog
+            (new SetNickDialogView(function(nick) {
+                _this.io.emit('create_user', {nick: nick});
+            }));
+        }
 
         // create chat view
         window.chat_view = new ChatView();
@@ -22,6 +28,9 @@ function Socket(channel) {
     });
 
     this.io.on('channel_joined', function(data) {
+        // set the nickname in use
+        window.nick_in_use = data.nick;
+
         window.chat_view.setNick(data.nick);
         window.app_view.navbar_view.setNick(data.nick);
         window.app_view.navbar_view.setChangeNickHandler(function(e) {
@@ -50,6 +59,9 @@ function Socket(channel) {
     });
 
     this.io.on('nick_changed', function(data) {
+        // set the nickname in use
+        window.nick_in_use = data.nick;
+
         window.chat_view.setNick(data.nick);
         window.app_view.navbar_view.setNick(data.nick);
     });
