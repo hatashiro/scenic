@@ -86,6 +86,9 @@ var ChatView = Backbone.View.extend({
         if(from_me) chatlog.addClass('from_me');
 
         $('.chat-log', this.object).append(chatlog);
+
+        // scroll to bottom
+        $('.scroll-box', this.object).scrollTop($('.chat-log', this.object).height());
     },
     notice: function(msg) {
         if(!this.object) return;
