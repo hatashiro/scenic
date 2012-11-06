@@ -142,7 +142,7 @@ body {
 #Chat dl {
     width: 100%;
     margin: 0px;
-    padding: none;
+    padding: 0px;
 }
 
 #Chat dl dt {
