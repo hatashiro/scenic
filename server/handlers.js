@@ -7,7 +7,7 @@ var ChannelModel = mongoose.model('Channel'),
 
 function Handlers(web) {
     this.index = function(req, res) {
-        res.render('index.jade', {settings: JSON.stringify(settings)});
+        res.render('index.jade', {});
     };
 
     this.channel = {
