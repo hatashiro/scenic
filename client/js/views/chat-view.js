@@ -15,6 +15,12 @@ var ChatView = Backbone.View.extend({
 
         $('body').append(this.object);
 
+        // set mouse wheel handler
+        $('.scroll-box', this.object).mousewheel(function(e, delta, deltaX, deltaY) {
+            $(this).scrollTop($(this).scrollTop() - (deltaY * 10));
+            e.preventDefault();
+        });
+
         // handle 'enter' and 'esc' key for show or hide chat view.
         $(document).bind('keyup.chat', function(e) {
             if(e.which == 13) {
