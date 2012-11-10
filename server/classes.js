@@ -53,7 +53,9 @@ module.exports = {
         };
 
         this.removeUser = function(user) {
-            this.users.splice(this.users.indexOf(user), 1);
+            if(this.users.indexOf(user) >= 0) {
+                this.users.splice(this.users.indexOf(user), 1);
+            }
         };
 
         this.preventNickDuplication = function(user) {

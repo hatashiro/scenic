@@ -24,7 +24,7 @@ function Socket(channel) {
     });
 
     this.io.on('user_created', function(data) {
-        _this.io.emit('join_channel', _this.channel);
+        _this.io.emit('join_channel', {'channel': _this.channel});
     });
 
     this.io.on('channel_joined', function(data) {
