@@ -140,6 +140,7 @@ body {
 }
 
 #Chat .scroll-box {
+    position: relative;
     max-height: 500px;
     overflow: hidden;
 }

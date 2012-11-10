@@ -15,11 +15,9 @@ var ChatView = Backbone.View.extend({
 
         $('body').append(this.object);
 
-        // set mouse wheel handler
-        $('.scroll-box', this.object).mousewheel(function(e, delta, deltaX, deltaY) {
-            $(this).scrollTop($(this).scrollTop() - (deltaY * 10));
-            e.preventDefault();
-        });
+        // set perfect-scrollbar
+        $('.scroll-box', this.object).perfectScrollbar('destroy');
+        $('.scroll-box', this.object).perfectScrollbar();
 
         // handle 'enter' and 'esc' key for show or hide chat view.
         $(document).bind('keyup.chat', function(e) {
@@ -95,6 +93,7 @@ var ChatView = Backbone.View.extend({
 
         // scroll to bottom
         $('.scroll-box', this.object).scrollTop($('.chat-log', this.object).height());
+        $('.scroll-box', this.object).perfectScrollbar('update');
     },
     notice: function(msg) {
         if(!this.object) return;
