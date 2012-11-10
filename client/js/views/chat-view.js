@@ -114,5 +114,16 @@ var ChatView = Backbone.View.extend({
                 }
             }
         });
+    },
+    updateUserlist: function(userlist) {
+        var userlist_box = $(".userlist-box", this.object).empty();
+        _.each(userlist, function(nick) {
+            var nickspan = $("<span class='nick'></span>").text('@'+nick);
+            if(nick == window.nick_in_use) {
+                nickspan.addClass('mine');
+            }
+            nickspan.appendTo(userlist_box);
+        });
+        console.log(userlist);
     }
 });

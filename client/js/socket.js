@@ -66,6 +66,10 @@ function Socket(channel) {
         window.app_view.navbar_view.setNick(data.nick);
     });
 
+    this.io.on('update_userlist', function(data) {
+        window.chat_view.updateUserlist(data.userlist);
+    });
+
     this.io.on('error', function(data) {
         // log the error
         console.log('Scenic socket exception: '+data.type);

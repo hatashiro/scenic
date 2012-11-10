@@ -139,6 +139,19 @@ body {
     display: none;
 }
 
+#Chat .userlist-box {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 4px;
+}
+
+#Chat .userlist-box .nick {
+    margin: 0px 2px;
+}
+
+#Chat .userlist-box .nick.mine {
+}
+
 #Chat .scroll-box {
     position: relative;
     max-height: 500px;

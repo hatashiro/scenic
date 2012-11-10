@@ -87,8 +87,12 @@ module.exports = {
         };
 
         this.updateUserlist = function() {
+            var userlist = [];
+            for(var i in this.users) {
+                userlist.push(this.users[i].nick);
+            }
             _.each(this.users, function(user) {
-                user.socket.emit('update_userlist', {userlist: this.users});
+                user.socket.emit('update_userlist', {userlist: userlist});
             });
         };
     }
