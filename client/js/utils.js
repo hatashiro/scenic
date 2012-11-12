@@ -9,3 +9,7 @@ $(function() {
         }
     });
 });
+
+String.prototype.endswith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
