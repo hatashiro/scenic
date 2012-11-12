@@ -124,6 +124,5 @@ var ChatView = Backbone.View.extend({
             }
             nickspan.appendTo(userlist_box);
         });
-        console.log(userlist);
     }
 });
