@@ -23,9 +23,16 @@ var UploadPicDialogView = Backbone.View.extend({
         // set handlers
         $('button.upload-pic', this.object).click(function(e) {
             var form = $('#uploadPictureForm'),
-                filename = $("input[name='picture_uploaded']", form).val();
+                file = $("input[name='picture_uploaded']", form),
+                button = $(this),
+                iframe = $("<iframe id='fileuploadIframe'></iframe>").appendTo(form.parent());
 
-            if(!hasProperImageExt(filename)) {
+            if(button.hasClass('disabled')) {
+                return;
+            }
+
+
+            if(!hasProperImageExt(file.val())) {
                 if(!$('.modal-body .alert.wrong-image-ext').length) {
                     var alert_div = $("<div class='alert alert-error wrong-image-ext'>Only jpg, jpeg, gif and png supported.</div>");
                     alert_div.append('<button type="button" class="close" data-dismiss="alert">×</button>');
@@ -35,7 +42,6 @@ var UploadPicDialogView = Backbone.View.extend({
             }
 
             // set iframe
-            var iframe = $("<iframe id='fileuploadIframe'></iframe>").appendTo(form.parent());
             iframe.load(function(e) {
                 var result = iframe.contents().text();
                 if(result === 'success') {
@@ -45,9 +51,17 @@ var UploadPicDialogView = Backbone.View.extend({
                     var alert_div = $("<div class='alert alert-error server-error'>Sorry! Something is broken in the server :(</div>");
                     alert_div.append('<button type="button" class="close" data-dismiss="alert">×</button>');
                     $('.modal-body', _this.object).append(alert_div);
+
+                    // enable input
+                    file.removeAttr('disabled');
+                    button.text('Upload').removeClass('loading disabled');
                 }
                 iframe.remove();
             });
+
+            // disable input
+            file.attr('disabled', 'disabled');
+            button.text('Uploading...').addClass('loading disabled');
 
             // submit the file
             form.submit();
