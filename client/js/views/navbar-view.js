@@ -21,5 +21,8 @@ var NavbarView = Backbone.View.extend({
     },
     setMoveChannelHandler: function(handler) {
         $('a.move-channel', this.object).click(handler);
+    },
+    setUploadPicHandler: function(handler) {
+        $('a.upload-pic', this.object).click(handler);
     }
 });

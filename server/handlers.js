@@ -24,6 +24,11 @@ function Handlers(web) {
                 }
                 res.json({id: channel.name, current_picture: 'temp_current_picture_id'}); // todo
             });
+        },
+        upload: function(req, res) {
+            // TODO: upload a picture
+            res.set('Content-Type', 'text/plain');
+            res.send('success');
         }
     };
 }

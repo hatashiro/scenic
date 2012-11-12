@@ -41,7 +41,10 @@ function Web() {
         },
         '/channel': {
             '/:name': {
-                get: route_handlers.channel.get
+                get: route_handlers.channel.get,
+                '/upload': {
+                    post: route_handlers.channel.upload
+                }
             }
         }
     });

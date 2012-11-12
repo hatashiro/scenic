@@ -8,6 +8,8 @@ script#navbar_template(type='text/html')
                 span.on-text Chat On
                 span.off-text Chat Off
         li
+            a.upload-pic(href='\#{{ channel }}') Upload Pictures
+        li
             a(href='#') Pictures
     ul.nav.pull-right
         li.dropdown
@@ -114,3 +116,15 @@ script#move_channel_template(type='text/html')
         .modal-footer
             button.btn(data-dismiss='modal', area-hidden='true') Close
             button.btn.btn-primary.move-channel Enter
+
+script#upload_pic_template(type='text/html')
+    #UploadPic.modal.hide.fade(tabindex="-1", role="dialog", area-labelledby="uploadPicturesLabel", aria-hidden="true")
+        .modal-header
+            h3 Upload your pictures!
+        .modal-body
+            form#uploadPictureForm(target='fileuploadIframe', action='/channel/{{ channel }}/upload', method='post')
+                input(type='file', name='picture_uploaded')
+            p.lead You can upload pictures with drag-and-drop in modern browsers except IE. Just drag-and-drop pictures into the channel page!
+        .modal-footer
+            button.btn(data-dismiss='modal', area-hidden='true') Close
+            button.btn.btn-primary.upload-pic Upload

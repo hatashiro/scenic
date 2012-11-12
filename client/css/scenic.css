@@ -280,7 +280,15 @@ body {
     padding-left: 10px;
 }
 
-.modal .modal-body .alert.no-whitespace {
+.modal .modal-body .alert {
     width: 80%;
     margin: 15px auto 0px;
+}
+
+#fileuploadIframe {
+    width: 0px;
+    height: 0px;
+    border: none;
+    margin: 0px;
+    padding: 0px;
 }

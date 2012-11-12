@@ -35,3 +35,15 @@ function toggle_chat(button) {
         }
     }
 }
+
+function hasProperImageExt(filename) {
+    var allowedExtList = ['.jpg', '.jpeg', '.png', '.gif'];
+
+    for(var i in allowedExtList) {
+        var ext = allowedExtList[i];
+        if(filename.toLowerCase().endswith(ext)) {
+            return true;
+        }
+    }
+    return false;
+}
