@@ -58,14 +58,12 @@ var UploadPicDialogView = Backbone.View.extend({
                     $('.modal-body', _this.object).append(alert_div);
 
                     // enable input
-                    file.removeAttr('disabled');
                     button.text('Upload').removeClass('loading disabled');
                 }
                 iframe.remove();
             });
 
             // disable input
-            file.attr('disabled', 'disabled');
             button.text('Uploading...').addClass('loading disabled');
 
             // submit the file
