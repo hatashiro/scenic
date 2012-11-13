@@ -122,7 +122,7 @@ script#upload_pic_template(type='text/html')
         .modal-header
             h3 Upload your pictures!
         .modal-body
-            form#uploadPictureForm(target='fileuploadIframe', action='/channel/{{ channel }}/upload', method='post')
+            form#uploadPictureForm(target='fileuploadIframe', action='/channel/{{ channel }}/upload', method='post', enctype='multipart/form-data')
                 input(type='file', name='picture_uploaded')
             p.lead You can upload pictures with drag-and-drop in modern browsers except IE. Just drag-and-drop pictures into the channel page!
         .modal-footer
