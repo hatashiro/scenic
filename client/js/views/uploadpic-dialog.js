@@ -25,9 +25,13 @@ var UploadPicDialogView = Backbone.View.extend({
             var form = $('#uploadPictureForm'),
                 file = $("input[name='picture_uploaded']", form),
                 button = $(this),
-                iframe = $("<iframe id='fileuploadIframe'></iframe>").appendTo(form.parent());
+                iframe = $("<iframe id='fileuploadIframe'></iframe>");
 
             if(button.hasClass('disabled')) {
+                return;
+            }
+
+            if(!file.val()) {
                 return;
             }
 
@@ -42,6 +46,7 @@ var UploadPicDialogView = Backbone.View.extend({
             }
 
             // set iframe
+            iframe.appendTo(form.parent());
             iframe.load(function(e) {
                 var result = iframe.contents().text();
                 if(result === 'success') {
