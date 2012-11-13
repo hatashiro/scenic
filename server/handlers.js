@@ -1,4 +1,6 @@
 var settings = require('../settings'),
+    path = require('path'),
+    fs = require('fs'),
     mongoose = require('mongoose');
 
 // mongoose models
@@ -26,9 +28,58 @@ function Handlers(web) {
             });
         },
         upload: function(req, res) {
-            // TODO: upload a picture
-            res.set('Content-Type', 'text/plain');
-            res.send('success');
+            var image = req.files.picture_uploaded,
+                upload_dir = path.join(__dirname, '../uploads'),
+                channel = req.params.name;
+
+            var response = function(text) {
+                res.set('Content-Type', 'text/plain');
+                res.send(text);
+            };
+
+            fs.readFile(image.path, function(err, data) {
+                if(err) {
+                    response('read_error:'+err);
+                    return;
+                }
+
+                // create new picture
+                picture = new PictureModel({channel: channel});
+
+                var picture_dir = path.join(upload_dir, ''+picture._id);
+                fs.mkdir(picture_dir, '0775', function(err) {
+                    if(err) {
+                        response('mkdir_error:'+err);
+                        return;
+                    }
+
+                    var picture_file = path.join(picture_dir, image.name);
+                    fs.writeFile(picture_file, data, function(err) {
+                        if(err) {
+                            response('write_error:'+err);
+                            return;
+                        }
+
+                        // remove tmp file
+                        fs.unlink(image.path, function(err) {
+                            if(err) {
+                                response('unlink_error:'+err);
+                                return;
+                            }
+
+                            picture.original = picture_file;
+                            picture.uploaded = Date.now();
+                            picture.save(function(err) {
+                                if(err) {
+                                    response('save_error:'+err);
+                                }
+
+                                response('success');
+                            });
+                        });
+                    });
+                });
+            });
         }
     };
 }
