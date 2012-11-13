@@ -14,12 +14,8 @@ function Handlers(web) {
 
     this.channel = {
         get: function(req, res) {
-            ChannelModel.find({name: req.params.name}, function(err, docs) {
-                var channel = null;
-                if(docs.length) {
-                    channel = docs[0];
-                }
-                else {
+            ChannelModel.findOne({name: req.params.name}, function(err, channel) {
+                if (channel === null) {
                     // create new channel
                     channel = new ChannelModel({name: req.params.name, pictures: []});
                     channel.save();

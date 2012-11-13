@@ -38,12 +38,8 @@ function Socket(web) {
                 user.join(channels[data.channel]);
             }
             else {
-                ChannelModel.find({name: data.channel}, function(err, channel_results) {
-                    var channel = null;
-                    if(channel_results.length) {
-                        channel = channel_results[0];
-                    }
-                    else {
+                ChannelModel.findOne({name: data.channel}, function(err, channel) {
+                    if(channel === null) {
                         // create new
                         channel = new ChannelModel({name: data.channel, pictures: []});
                         channel.save();
