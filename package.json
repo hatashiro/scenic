@@ -14,7 +14,7 @@
         "express": "3.x",
         "jade": "0.27.x",
         "socket.io": "0.9.x",
-        "gm": "1.5.x",
+        "gm": "1.6.x",
         "connect-assets": "2.3.x",
         "mongoose": "3.3.x",
         "underscore": "1.4.x"
