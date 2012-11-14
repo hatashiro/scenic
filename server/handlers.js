@@ -1,6 +1,7 @@
 var settings = require('../settings'),
     path = require('path'),
     fs = require('fs'),
+    gm = require('gm'),
     mongoose = require('mongoose');
 
 // mongoose models
@@ -40,17 +41,19 @@ function Handlers(web) {
                 }
 
                 // create new picture
-                picture = new PictureModel({channel: channel});
+                var picture = new PictureModel({channel: channel}),
+                    picture_dir = path.join(upload_dir, ''+picture._id);
 
-                var picture_dir = path.join(upload_dir, ''+picture._id);
                 fs.mkdir(picture_dir, '0775', function(err) {
                     if(err) {
                         response('mkdir_error:'+err);
                         return;
                     }
 
-                    var picture_file = path.join(picture_dir, image.name);
-                    fs.writeFile(picture_file, data, function(err) {
+                    var ext = path.extname(image.name.toLowerCase()),
+                        original = path.join(picture_dir, "original"+ext);
+
+                    fs.writeFile(original, data, function(err) {
                         if(err) {
                             response('write_error:'+err);
                             return;
@@ -63,14 +66,54 @@ function Handlers(web) {
                                 return;
                             }
 
-                            picture.original = picture_file;
-                            picture.uploaded = Date.now();
-                            picture.save(function(err) {
-                                if(err) {
-                                    response('save_error:'+err);
-                                }
+                            picture.original = original;
 
-                                response('success');
+                            // get size
+                            gm(original).size(function(err, size) {
+                                // create thumbnail
+                                var thumbnail_width = size.width >= size.height ? 300 : size.width * 300 / size.height,
+                                    thumbnail_height = size.width <= size.height ? 300 : size.height * 300 / size.width,
+                                    thumbnail = path.join(picture_dir, "thumbnail.jpg");
+
+                                gm(original).resize(thumbnail_width, thumbnail_height).quality(90).write(thumbnail, function(err) {
+                                    if(err) {
+                                        response('thumbnail_error:'+err);
+                                        return;
+                                    }
+
+                                    picture.thumbnail = thumbnail;
+
+                                    var save = function() {
+                                        picture.upload = Date.now();
+                                        picture.save(function(err) {
+                                            if(err) {
+                                                response('save_err:'+err);
+                                            }
+
+                                            response('success');
+                                        });
+                                    };
+
+                                    // if the image is larger than 1mb or 1920x1080, create minified image.
+                                    if(image.size > 1024 * 1024 || size.width > 1920 || size.height > 1080) {
+                                        var minified_width = (size.width / size.height) >= (16 / 9) ? 1920 : 1080 * size.width / size.height,
+                                            minified_height = (size.width / size.height) <= (16 / 9) ? 1080 : 1920 * size.height / size.width,
+                                            minified = path.join(picture_dir, "minified.jpg");
+
+                                        gm(original).resize(minified_width, minified_height).quality(90).write(minified, function(err) {
+                                            if(err) {
+                                                response('minified_error:'+err);
+                                                return;
+                                            }
+
+                                            picture.minified = minified;
+                                            save();
+                                        });
+                                    }
+                                    else {
+                                        save();
+                                    }
+                                });
                             });
                         });
                     });
