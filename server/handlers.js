@@ -121,6 +121,43 @@ function Handlers(web) {
             });
         }
     };
+
+    this.picture = {
+        minified: function(req, res) {
+            var pid = req.params.id;
+            PictureModel.findOne({_id: pid}, function(err, picture) {
+                if(err) {
+                    res.send('Error in finding picture...:'+err);
+                    return;
+                }
+
+                var minified = picture.minified ? picture.minified : picture.original;
+                res.sendfile(minified);
+            });
+        },
+        original: function(req, res) {
+            var pid = req.params.id;
+            PictureModel.findOne({_id: pid}, function(err, picture) {
+                if(err) {
+                    res.send('Error in finding picture...:'+err);
+                    return;
+                }
+
+                res.sendfile(picture.original);
+            });
+        },
+        thumbnail: function(req, res) {
+            var pid = req.params.id;
+            PictureModel.findOne({_id: pid}, function(err, picture) {
+                if(err) {
+                    res.send('Error in finding picture...:'+err);
+                    return;
+                }
+
+                res.sendfile(picture.thumbnail);
+            });
+        }
+    };
 }
 
 module.exports = Handlers;

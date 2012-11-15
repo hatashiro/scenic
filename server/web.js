@@ -47,6 +47,17 @@ function Web() {
                     post: route_handlers.channel.upload
                 }
             }
+        },
+        '/picture': {
+            '/:id': {
+                get: route_handlers.picture.minified,
+                '/original': {
+                    get: route_handlers.picture.original
+                },
+                '/thumbnail': {
+                    get: route_handlers.picture.thumbnail
+                }
+            }
         }
     });
 }
