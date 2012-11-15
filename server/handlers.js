@@ -14,16 +14,6 @@ function Handlers(web) {
     };
 
     this.channel = {
-        get: function(req, res) {
-            ChannelModel.findOne({name: req.params.name}, function(err, channel) {
-                if (channel === null) {
-                    // create new channel
-                    channel = new ChannelModel({name: req.params.name, pictures: []});
-                    channel.save();
-                }
-                res.json({id: channel.name, current_picture: 'temp_current_picture_id'}); // todo
-            });
-        },
         upload: function(req, res) {
             var image = req.files.picture_uploaded,
                 upload_dir = path.join(__dirname, '../uploads'),
@@ -101,6 +91,9 @@ function Handlers(web) {
                                                 else {
                                                     response('success');
                                                 }
+
+                                                // set as current picture of channel
+                                                web.socket.changePicture(channel, picture._id);
                                             });
                                         };
 

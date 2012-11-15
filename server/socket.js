@@ -80,6 +80,10 @@ function Socket(web) {
             }
         });
     });
+
+    this.changePicture = function(channel, pid) {
+        channels[channel].changePicture(pid);
+    };
 }
 
 module.exports = Socket;

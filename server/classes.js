@@ -44,7 +44,7 @@ module.exports = {
     Channel: function(model) {
         this.model = model;
         this.users = [];
-        this.current_image = null;
+        this.current_picture = null;
 
         this.addUser = function(user) {
             this.preventNickDuplication(user);
@@ -95,6 +95,13 @@ module.exports = {
             }
             _.each(this.users, function(user) {
                 user.socket.emit('update_userlist', {userlist: userlist});
+            });
+        };
+
+        this.changePicture = function(pid) {
+            this.current_picture = pid;
+            _.each(this.users, function(user) {
+                user.socket.emit('picture_changed', {pid: pid});
             });
         };
     }
