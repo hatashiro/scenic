@@ -54,6 +54,7 @@ var UploadPicDialogView = Backbone.View.extend({
                 }
                 else {
                     var alert_div = $("<div class='alert alert-error server-error'>Sorry! Something is broken in the server :(</div>");
+                    alert_div.append($("<p></p>").text(result));
                     alert_div.append('<button type="button" class="close" data-dismiss="alert">×</button>');
                     $('.modal-body', _this.object).append(alert_div);
 
