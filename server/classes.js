@@ -98,10 +98,10 @@ module.exports = {
             });
         };
 
-        this.changePicture = function(pid) {
-            this.current_picture = pid;
+        this.changePicture = function(picture) {
+            this.current_picture = picture._id;
             _.each(this.users, function(user) {
-                user.socket.emit('picture_changed', {pid: pid});
+                user.socket.emit('picture_changed', {pid: picture._id, width: picture.width, height: picture.height});
             });
         };
     }

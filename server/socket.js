@@ -81,8 +81,8 @@ function Socket(web) {
         });
     });
 
-    this.changePicture = function(channel, pid) {
-        channels[channel].changePicture(pid);
+    this.changePicture = function(channel, picture) {
+        channels[channel].changePicture(picture);
     };
 }
 

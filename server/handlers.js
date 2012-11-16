@@ -61,6 +61,9 @@ function Handlers(web) {
                             var createThumbnailAndMinified = function() {
                                 // get size
                                 gm(original).size(function(err, size) {
+                                    picture.width = size.width;
+                                    picture.height = size.height;
+
                                     // create thumbnail
                                     var thumbnail_width = size.width >= size.height ? 300 : size.width * 300 / size.height,
                                         thumbnail_height = size.width <= size.height ? 300 : size.height * 300 / size.width,
@@ -93,7 +96,7 @@ function Handlers(web) {
                                                 }
 
                                                 // set as current picture of channel
-                                                web.socket.changePicture(channel, picture._id);
+                                                web.socket.changePicture(channel, picture);
                                             });
                                         };
 
