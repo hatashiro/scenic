@@ -6,6 +6,9 @@ var AppView = Backbone.View.extend({
         // nothing to do!
     },
     render: function(router) {
+        // remove picture resize handler
+        $(window).unbind('resize.picture');
+
         if(router && router.channel) {
             this.channel = router.channel;
         }

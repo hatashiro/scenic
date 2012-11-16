@@ -73,6 +73,14 @@ function Socket(channel) {
         window.chat_view.updateUserlist(data.userlist);
     });
 
+    this.io.on('picture_changed', function(data) {
+        var pid = data.pid,
+            width = data.width,
+            height = data.height;
+
+        window.app_view.main_view.loadPicture(pid, width, height);
+    });
+
     this.io.on('error', function(data) {
         // log the error
         console.log('Scenic socket exception: '+data.type);

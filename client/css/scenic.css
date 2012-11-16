@@ -37,7 +37,11 @@ body {
 #ChatButton.off .off-text { display: none; }
 
 #content {
-    margin-top:80px;
+    margin-top:41px;
+}
+
+.container {
+    padding-top:40px;
 }
 
 .center-aligned {
@@ -244,6 +248,10 @@ body {
     #Chat {
         top: 51px;
     }
+
+    #content {
+        margin-top:-20px;
+    }
 }
 
 @media(max-width: 767px) {
@@ -323,4 +331,13 @@ body {
     to {
         background-position: -50px 0;
     }
+}
+
+.picture-wrapper {
+    text-align: center;
+}
+
+.picture-wrapper .picture {
+    max-width: 100%;
+    max-height: 100%;
 }
