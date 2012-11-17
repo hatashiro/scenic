@@ -2,15 +2,15 @@ var ChannelView = Backbone.View.extend({
     channel: null,
     initialize: function(channel) {
         this.channel = channel;
-
-        this.render(channel);
     },
-    render: function(channel) {
-        var channel_content = ich.channel_template({channel: channel});
-
-        $('#content').html(channel_content);
+    render: function(pid, size) {
+        if(pid && size) {
+            this.loadPicture(pid, size);
+        }
+        else {
+        }
     },
-    loadPicture: function(pid, width, height) {
+    loadPicture: function(pid, size) {
         var picture = ich.picture_template({pid: pid});
 
         $('#content').html(picture);
@@ -21,8 +21,8 @@ var ChannelView = Backbone.View.extend({
             $(picture).height(max_height);
 
             // set vertical align center
-            if(max_height > height) {
-                $(picture).css({paddingTop: parseInt((max_height - height)/2)});
+            if(max_height > size.height) {
+                $(picture).css({paddingTop: parseInt((max_height - size.height)/2, 10)});
             }
         };
         adjustHeight();

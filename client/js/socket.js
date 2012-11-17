@@ -78,7 +78,7 @@ function Socket(channel) {
             width = data.width,
             height = data.height;
 
-        window.app_view.main_view.loadPicture(pid, width, height);
+        window.app_view.main_view.render(pid, {width: width, height: height});
     });
 
     this.io.on('error', function(data) {
