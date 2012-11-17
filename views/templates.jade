@@ -127,3 +127,11 @@ script#upload_pic_template(type='text/html')
 script#picture_template(type='text/html')
     .picture-wrapper
         img.picture(src='/picture/{{ pid }}', alt='{{ pid }}')
+
+script#empty_channel_template(type='text/html')
+    .container.center-aligned
+        p.lead.channel-oops Oops! There's no picture uploaded in this channel...
+        h1.channel-title
+            span.sharp #
+            span {{ channel }}
+        p.lead.channel-oops Please upload your pictures!

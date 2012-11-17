@@ -8,6 +8,7 @@ var ChannelView = Backbone.View.extend({
             this.loadPicture(pid, size);
         }
         else {
+            this.renderEmptyChannel();
         }
     },
     loadPicture: function(pid, size) {
@@ -32,5 +33,10 @@ var ChannelView = Backbone.View.extend({
         $(window).bind('resize.picture', function() {
             adjustHeight();
         });
+    },
+    renderEmptyChannel: function() {
+        var empty_channel = ich.empty_channel_template({channel: this.channel});
+
+        $('#content').html(empty_channel);
     }
 });

@@ -23,7 +23,7 @@ body {
     color: #FCF;
 }
 
-#Navbar li .sharp {
+.sharp {
     color: #608090;
 }
 
@@ -340,4 +340,17 @@ body {
 .picture-wrapper .picture {
     max-width: 100%;
     max-height: 100%;
+}
+
+.channel-title {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    font-size: 200px;
+    color: #555;
+}
+
+.channel-oops {
+    padding-top: 50px;
+    font-size: 30px;
+    color: #444;
 }
