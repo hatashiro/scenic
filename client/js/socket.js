@@ -51,6 +51,14 @@ function Socket(channel) {
         window.chat_view.onChatInput(function(msg) {
             _this.io.emit('chat', {msg: msg});
         });
+
+        // load image
+        if(data.picture !== null) {
+            window.app_view.main_view.render(data.picture.id, {width: data.picture.width, height: data.picture.height});
+        }
+        else {
+            window.app_view.main_view.render();
+        }
     });
 
     this.io.on('chat', function(data) {

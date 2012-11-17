@@ -10,7 +10,17 @@ module.exports = {
             this.channel = channel;
             this.channel.addUser(this);
             this.channel.notice(this.nick+" has joined.");
-            this.socket.emit('channel_joined', {nick:this.nick, channel: channel.model.name});
+
+            var picture = null;
+            if(this.channel.current_picture) {
+                picture = {
+                    id: this.channel.current_picture._id,
+                    width: this.channel.current_picture.width,
+                    height: this.channel.current_picture.height
+                };
+            }
+
+            this.socket.emit('channel_joined', {nick:this.nick, channel: channel.model.name, picture: picture});
             this.channel.updateUserlist();
         };
 
@@ -44,7 +54,12 @@ module.exports = {
     Channel: function(model) {
         this.model = model;
         this.users = [];
-        this.current_picture = null;
+        if(this.model.pictures.length > 0) {
+            this.current_picture = _.last(this.model.pictures);
+        }
+        else {
+            this.current_picture = null;
+        }
 
         this.addUser = function(user) {
             this.preventNickDuplication(user);
@@ -106,7 +121,7 @@ module.exports = {
         };
 
         this.changePicture = function(picture) {
-            this.current_picture = picture._id;
+            this.current_picture = picture;
             _.each(this.users, function(user) {
                 user.socket.emit('picture_changed', {pid: picture._id, width: picture.width, height: picture.height});
             });
