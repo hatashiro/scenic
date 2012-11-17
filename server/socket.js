@@ -81,7 +81,8 @@ function Socket(web) {
         });
     });
 
-    this.changePicture = function(channel, picture) {
+    this.uploadPicture = function(channel, picture) {
+        channels[channel].addPicture(picture);
         channels[channel].changePicture(picture);
     };
 }

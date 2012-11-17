@@ -98,6 +98,13 @@ module.exports = {
             });
         };
 
+        this.addPicture = function(picture) {
+            if(!_.contains(this.model.pictures, picture)) {
+                this.model.pictures.push(picture);
+                this.model.save();
+            }
+        };
+
         this.changePicture = function(picture) {
             this.current_picture = picture._id;
             _.each(this.users, function(user) {

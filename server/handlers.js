@@ -96,7 +96,7 @@ function Handlers(web) {
                                                 }
 
                                                 // set as current picture of channel
-                                                web.socket.changePicture(channel, picture);
+                                                web.socket.uploadPicture(channel, picture);
                                             });
                                         };
 
