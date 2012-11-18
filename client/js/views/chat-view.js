@@ -91,6 +91,11 @@ var ChatView = Backbone.View.extend({
 
         $('.chat-log', this.object).append(chatlog);
 
+        if($.browser.msie) {
+            // refresh chatlog for ie
+            $('.chat-log', this.object).hide().show();
+        }
+
         // scroll to bottom
         $('.scroll-box', this.object).scrollTop($('.chat-log', this.object).height());
         $('.scroll-box', this.object).perfectScrollbar('update');
@@ -99,6 +104,11 @@ var ChatView = Backbone.View.extend({
         if(!this.object) return;
 
         $('.chat-log', this.object).append(ich.notice_template({msg: msg}));
+
+        if($.browser.msie) {
+            // refresh chatlog for ie
+            $('.chat-log', this.object).hide().show();
+        }
 
         // scroll to bottom
         $('.scroll-box', this.object).scrollTop($('.chat-log', this.object).height());

@@ -96,7 +96,7 @@ function Socket(channel) {
 
     this.disconnect = function() {
         window.chat_view.remove();
-        delete(window.chat_view);
+        window.chat_view = null;
         this.io.emit('force_disconnect');
         console.log('Scenic socket disconnected.');
     };
