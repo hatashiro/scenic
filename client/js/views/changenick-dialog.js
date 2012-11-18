@@ -54,8 +54,10 @@ var ChangeNickDialogView = Backbone.View.extend({
                 // enter
                 $('button.change-nick', _this.object).click();
             }
+        });
 
-            // prevent propagation to body(keyup.chat)
+        $("input.nickname", this.object).keydown(function(e) {
+            // prevent propagation to body(keydown.chat)
             e.stopPropagation();
         });
     },

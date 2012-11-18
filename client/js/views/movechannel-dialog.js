@@ -54,8 +54,10 @@ var MoveChannelDialogView = Backbone.View.extend({
                 // enter
                 $('button.move-channel', _this.object).click();
             }
+        });
 
-            // prevent propagation to body(keyup.chat)
+        $("input.channel", this.object).keydown(function(e) {
+            // prevent propagation to body(keydown.chat)
             e.stopPropagation();
         });
     },

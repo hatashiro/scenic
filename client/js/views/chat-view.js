@@ -20,7 +20,7 @@ var ChatView = Backbone.View.extend({
         $('.scroll-box', this.object).perfectScrollbar();
 
         // handle 'enter' and 'esc' key for show or hide chat view.
-        $(document).bind('keyup.chat', function(e) {
+        $(document).bind('keydown.chat', function(e) {
             if(e.which == 13) {
                 // enter
                 if(_this.isHidden()) {
@@ -103,7 +103,7 @@ var ChatView = Backbone.View.extend({
     onChatInput: function(handler) {
         var _this = this;
         var chat_input = $("input.chat-input", this.object);
-        chat_input.keyup(function(e) {
+        chat_input.keypress(function(e) {
             if(e.which == 13 && !_this.isHidden()) {
                 // enter
                 var msg = chat_input.val();
