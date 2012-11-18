@@ -99,6 +99,10 @@ var ChatView = Backbone.View.extend({
         if(!this.object) return;
 
         $('.chat-log', this.object).append(ich.notice_template({msg: msg}));
+
+        // scroll to bottom
+        $('.scroll-box', this.object).scrollTop($('.chat-log', this.object).height());
+        $('.scroll-box', this.object).perfectScrollbar('update');
     },
     onChatInput: function(handler) {
         var _this = this;
