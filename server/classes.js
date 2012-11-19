@@ -125,6 +125,7 @@ module.exports = {
             _.each(this.users, function(user) {
                 user.socket.emit('picture_changed', {pid: picture._id, width: picture.width, height: picture.height});
             });
+            this.notice('Picture has been changed to '+picture._id);
         };
     }
 };

@@ -58,6 +58,16 @@ function Socket(web) {
             user.say(data.msg);
         });
 
+        socket.on('change_picture', function(data) {
+            if(channels[data.channel]) {
+                PictureModel.findOne({_id: data.pid}, function(err, picture) {
+                    if(picture !== null) {
+                        channels[data.channel].changePicture(picture);
+                    }
+                });
+            }
+        });
+
         socket.on('change_nick', function(data) {
             if(!user) {
                 socket.emit('error', {type: 'NoUser'});
