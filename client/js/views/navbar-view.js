@@ -24,5 +24,8 @@ var NavbarView = Backbone.View.extend({
     },
     setUploadPicHandler: function(handler) {
         $('a.upload-pic', this.object).click(handler);
+    },
+    setShowPicHandler: function(handler) {
+        $('a.show-pic', this.object).click(handler);
     }
 });

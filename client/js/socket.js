@@ -44,6 +44,8 @@ function Socket(channel) {
         window.app_view.navbar_view.setUploadPicHandler(function(e) {
             (new UploadPicDialogView(_this.channel));
         });
+        window.app_view.navbar_view.setShowPicHandler(function(e) {
+        });
 
         window.chat_view.focusInput();
 
