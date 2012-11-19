@@ -2,7 +2,8 @@ var settings = require('../settings'),
     path = require('path'),
     fs = require('fs'),
     gm = require('gm'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    _ = require('underscore')._;
 
 // mongoose models
 var ChannelModel = mongoose.model('Channel'),
@@ -140,6 +141,24 @@ function Handlers(web) {
                         });
                     });
                 });
+            });
+        },
+        pictures: function(req, res) {
+            var name = req.params.name;
+            ChannelModel.findOne({name: name}, function(err, channel) {
+                if(err) {
+                    res.send('Error in finding channel...:'+err);
+                    return;
+                }
+
+                var sorted_pictures = _.sortBy(channel.pictures, function(picture) { return -1 * picture.uploaded; }),
+                    pid_list = [];
+
+                _.each(sorted_pictures, function(picture) {
+                    pid_list.push(picture._id);
+                });
+
+                res.json(pid_list);
             });
         }
     };

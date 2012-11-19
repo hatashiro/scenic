@@ -9,7 +9,7 @@ module.exports = function() {
         channel: String,
         width: Number,
         height: Number,
-        uploaded: Date
+        uploaded: {type: Date, default: Date.now }
     });
 
     var Channels = new Schema({

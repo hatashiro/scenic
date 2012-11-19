@@ -44,6 +44,9 @@ function Web() {
             '/:name': {
                 '/upload': {
                     post: route_handlers.channel.upload
+                },
+                '/pictures': {
+                    get: route_handlers.channel.pictures
                 }
             }
         },
