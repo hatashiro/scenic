@@ -126,7 +126,8 @@ script#upload_pic_template(type='text/html')
 
 script#picture_template(type='text/html')
     .picture-wrapper
-        img.picture(src='/picture/{{ pid }}', alt='{{ pid }}')
+        a(href='/picture/{{ pid }}/original', target='_blank')
+            img.picture(src='/picture/{{ pid }}', alt='{{ pid }}')
 
 script#empty_channel_template(type='text/html')
     .container.center-aligned
