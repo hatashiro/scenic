@@ -66,8 +66,8 @@ function Handlers(web) {
                                     picture.height = size.height;
 
                                     // create thumbnail
-                                    var thumbnail_width = size.width >= size.height ? 300 : size.width * 300 / size.height,
-                                        thumbnail_height = size.width <= size.height ? 300 : size.height * 300 / size.width,
+                                    var thumbnail_width = size.width <= size.height ? 300 : size.width * 300 / size.height,
+                                        thumbnail_height = size.width >= size.height ? 300 : size.height * 300 / size.width,
                                         thumbnail = path.join(picture_dir, "thumbnail.jpg");
 
                                     gm(original).resize(thumbnail_width, thumbnail_height).quality(90).write(thumbnail, function(err) {
