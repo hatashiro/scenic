@@ -7,11 +7,6 @@ var handlers = {
             window.socket.disconnect();
             window.socket = null;
         }
-
-        // delete dialog if exists
-        if(window._bootstrap_dialog) {
-            window._bootstrap_dialog.remove();
-        }
     },
 
     channel: function(channel) {
