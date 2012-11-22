@@ -136,3 +136,11 @@ script#empty_channel_template(type='text/html')
             span.sharp #
             span {{ channel }}
         p.lead.channel-oops Please upload your pictures!
+
+script#show_pictures_template(type='text/html')
+    #ShowPictures
+        ul.picture-list
+
+script#picture_thumbnail_template(type='text/html')
+    li
+        img(src='/picture/{{ pid }}/thumbnail', alt='{{ pid }}')

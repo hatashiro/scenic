@@ -14,6 +14,11 @@ var AppView = Backbone.View.extend({
             window._bootstrap_dialog.remove();
         }
 
+        // delete show-picture view if exists
+        if($('#ShowPictures').length) {
+            $('#ShowPictures').data('view').remove();
+        }
+
         if(router && router.channel) {
             this.channel = router.channel;
         }

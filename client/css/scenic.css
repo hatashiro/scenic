@@ -354,3 +354,78 @@ body {
     font-size: 30px;
     color: #444;
 }
+
+#ShowPictures {
+    position: fixed;
+    top: 41px;
+    left: 0px;
+    width: 100%;
+    background: transparent;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7FFFFFFF,endColorstr=#7FFFFFFF);
+    zoom: 1;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+@media(max-width: 979px) {
+    #ShowPictures {
+        top: 51px;
+    }
+}
+
+@media(max-width: 767px) {
+    #ShowPictures {
+    }
+}
+
+#ShowPictures ul.picture-list {
+    margin: 0px auto;
+    padding: 0px;
+    width: 1200px;
+}
+
+@media(max-width: 1249px) {
+    #ShowPictures ul.picture-list {
+        width: 900px;
+    }
+}
+
+@media(max-width: 949px) {
+    #ShowPictures ul.picture-list {
+        width: 600px;
+    }
+}
+
+@media(max-width: 619px) {
+    #ShowPictures ul.picture-list {
+        width: 300px;
+    }
+}
+
+#ShowPictures ul.picture-list li {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    display: block;
+    float: left;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    opacity: 0.85;
+    filter: alpha(opacity = 85);
+}
+
+#ShowPictures ul.picture-list li:hover {
+    cursor: pointer;
+    opacity: 1;
+    filter: alpha(opacity = 100);
+}
+
+#ShowPictures ul.picture-list li img {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    max-width: none;
+    max-height: none;
+}

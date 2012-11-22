@@ -45,6 +45,14 @@ function Socket(channel) {
             (new UploadPicDialogView(_this.channel));
         });
         window.app_view.navbar_view.setShowPicHandler(function(e) {
+            if($('#ShowPictures').length) {
+                $('#ShowPictures').data('view').remove();
+            }
+            else {
+                (new ShowPicturesView(_this.channel, function(pid) {
+                    _this.io.emit('change_picture', {channel: _this.channel, pid: pid});
+                }));
+            }
         });
 
         window.chat_view.focusInput();
