@@ -62,6 +62,10 @@ function Handlers(web) {
                             var createThumbnailAndMinified = function() {
                                 // get size
                                 gm(original).size(function(err, size) {
+                                    if(err) {
+                                        response('resize_error:'+err);
+                                        return;
+                                    }
                                     picture.width = size.width;
                                     picture.height = size.height;
 
