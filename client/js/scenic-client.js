@@ -1,5 +1,6 @@
 //= require 'lib/jquery-1.8.2.min.js'
 //= require 'lib/jquery.mousewheel.js'
+//= require 'lib/jquery.filedrop.js'
 //= require 'lib/perfect-scrollbar.min'
 //= require 'lib/bootstrap.min.js'
 //= require 'lib/underscore-min.js'
