@@ -4,12 +4,29 @@ var ChannelView = Backbone.View.extend({
         this.channel = channel;
     },
     render: function(pid, size) {
+        var _this = this;
+
         if(pid && size) {
             this.loadPicture(pid, size);
         }
         else {
             this.renderEmptyChannel();
         }
+
+        // set drag-and-drop upload handler
+        $('html').off('drop.picture_upload');
+        $('html').filedrop({
+            namespace: 'picture_upload',
+            url: '/channel/'+_this.channel+'/upload',
+            paramname: 'picture_uploaded',
+            allowedfiletypes: ['image/jpeg','image/png','image/gif'],
+            maxfilesize: 100,
+            uploadFinished: function(i, file, response, time) {
+                if(response !== 'success') {
+                    console.log('Internal Server Error:'+response);
+                }
+            }
+        });
     },
     loadPicture: function(pid, size) {
         var picture = ich.picture_template({pid: pid});
