@@ -429,3 +429,52 @@ body {
     max-width: none;
     max-height: none;
 }
+
+#DragAndDropStatusBar {
+    position: fixed;
+    height: 35px;
+    bottom: -35px;
+    background-color: black;
+    color: white;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+    width: 100%;
+    text-align: center;
+    line-height: 35px;
+    opacity: 0.8;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+#DragAndDropStatusBar.uploading .dragover-text {
+    display: none;
+}
+
+#DragAndDropStatusBar .uploading-text {
+    display: none;
+    background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+        color-stop(.25, rgba(255, 255, 255, .10)),
+        color-stop(.25, transparent),
+        color-stop(.5, transparent),
+        color-stop(.5, rgba(255, 255, 255, .10)),
+        color-stop(.75, rgba(255, 255, 255, .10)),
+        color-stop(.75, transparent),
+        to(transparent));
+    background-image:
+        -moz-linear-gradient(-45deg,
+            rgba(255, 255, 255, .10) 25%,
+            transparent 25%,
+            transparent 50%, rgba(255, 255, 255, .10) 50%,
+            rgba(255, 255, 255, .10) 75%,
+            transparent 75%, transparent
+        );
+    background-size: 50px 50px;
+    -moz-background-size: 50px 50px;
+    -webkit-background-size: 50px 50px;
+    -webkit-animation: animate-stripes 2s linear infinite;
+}
+
+#DragAndDropStatusBar.uploading .uploading-text {
+    display: block;
+}

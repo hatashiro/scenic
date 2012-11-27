@@ -144,3 +144,8 @@ script#show_pictures_template(type='text/html')
 script#picture_thumbnail_template(type='text/html')
     li
         img(src='/picture/{{ pid }}/thumbnail', alt='{{ pid }}')
+
+script#drag_and_drop_status_bar(type='text/html')
+    #DragAndDropStatusBar
+        .dragover-text Drop the file to upload!
+        .uploading-text Uploading...

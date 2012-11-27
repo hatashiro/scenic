@@ -11,6 +11,8 @@ var AppView = Backbone.View.extend({
 
         // remove drag-and-drop upload handler
         $('html').off('drop.picture_upload');
+        $('html').off('dragover.picture_upload');
+        $('html').off('dragleave.picture_upload');
 
         // delete dialog if exists
         if(window._bootstrap_dialog) {
