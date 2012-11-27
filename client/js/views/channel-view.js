@@ -38,7 +38,7 @@ var ChannelView = Backbone.View.extend({
             },
             uploadFinished: function(i, file, response, time) {
                 if(response !== 'success') {
-                    console.log('Internal Server Error:'+response);
+                    alert('Internal Server Error:'+response);
                 }
 
                 // finish loading
