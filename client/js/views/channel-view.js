@@ -69,13 +69,16 @@ var ChannelView = Backbone.View.extend({
 
         // function to adjust picture height
         var adjustHeight = function() {
-            var max_height = $(window).height() - $(picture).offset().top;
-            $(picture).height(max_height);
+            var max_height = $(window).height() - $(picture).offset().top,
+                padding_top = 0;
 
             // set vertical align center
             if(max_height > size.height) {
-                $(picture).css({paddingTop: parseInt((max_height - size.height)/2, 10)});
+                padding_top = parseInt((max_height - size.height)/2, 10);
+                max_height -= padding_top;
             }
+
+            $(picture).height(max_height).css({paddingTop: padding_top});
         };
         adjustHeight();
 
