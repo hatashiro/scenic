@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Scenic</title>
+        <link href="images/favicon.png" rel="icon" type="image/x-icon">
+        <link rel='stylesheet' href='css/bootstrap.min.css'>
+        <link rel='stylesheet' href='css/bootstrap-responsive.min.css'>
+        <link rel='stylesheet' href='css/perfect-scrollbar.css'>
+        <link rel='stylesheet' href='css/scenic.css'>
+        <script id="navbar_template" type="text/html">
+            <ul class="nav">
+                <li class="logo logo-font">
+                    <a href="/#">Scenic</a>
+                </li>
+                {{#channel}}
+                <li>
+                    <a id="ChatButton" href="#{{ channel }}" onclick="toggle_chat(this)" class="on">
+                        <span class="on-text">Chat On</span>
+                        <span class="off-text">Chat Off</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#{{ channel }}" class="upload-pic">Upload Pictures</a>
+                </li>
+                <li>
+                    <a href="#{{ channel }}" class="show-pic">Show Pictures</a>
+                </li>
+            </ul>
+            <ul class="nav pull-right">
+                <li class="dropdown">
+                    <a href="#{{ channel }}" data-toggle="dropdown" class="dropdown-toggle">
+                        <span class="at">@</span><span class="nick"></span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul role="menu" area-labelledby="nick_dropdown" class="dropdown-menu">
+                        <li>
+                            <a href="#{{ channel }}" class="change-nick">Change nickname</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#{{ channel }}" data-toggle="dropdown" class="dropdown-toggle">
+                        <span class="sharp">#</span><span>{{ channel }}</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul role="menu" area-labelledby="channel_dropdown" class="dropdown-menu">
+                        <li>
+                            <a href="#{{ channel }}" class="move-channel">Move to another channel</a>
+                        </li>
+                    </ul>
+                </li>
+                {{/channel}}
+            </ul>
+        </script>
+        <script id="index_template" type="text/html">
+            <div class="container center-aligned">
+                <h1 class="logo-font logo">Scenic</h1>
+                <p class="lead logo-desc">See great pictures with your friends!</p>
+                <h1 class="logo-font title join-channel-title">This demo page is under development!</h1>
+                <div class='hidden'>
+                    <h1 class="logo-font title join-channel-title">Join a channel.</h1>
+                    <form onsubmit="return join_channel();" class="input-append join-channel">
+                        <input id="channel_name" type="text" placeholder="#channel" class="text lead">
+                        <input type="submit" value="Enter" class="btn submit lead">
+                    </form>
+                </div>
+                <h1 class="logo-font title">Scenic?</h1>
+                <p class="lead">Scenic is a Node.js based album app in which you can see great pictures with your friends in realtime.</p>
+                <h1 class="logo-font title">How to Use?</h1>
+                <dl class="dl-horizontal how-to-use lead">
+                    <dt>Step 1.&nbsp;</dt>
+                    <dd>Join a channel.</dd>
+                    <dt>Step 2.&nbsp;</dt>
+                    <dd>Upload a picture.</dd>
+                    <dt>Step 3.&nbsp;</dt>
+                    <dd>The picture you uploaded is synced and all your friends in the channel always see the same picture.</dd>
+                    <dt class="last">Step 4.&nbsp;</dt>
+                    <dd class="last">Profit!</dd>
+                </dl>
+                <h1 class="logo-font title">Fork me on GitHub!</h1>
+                <p class="lead">
+                    <a href="https://github.com/noraesae/scenic" target="_blank">Yes, I really love open source.</a>
+                </p>
+                <p class="lead copyright">The MIT License (MIT) Copyright (c) 2012 <a href='https://github.com/noraesae' target='_blank'>HyeonJe Jun</a>.</p>
+            </div>
+        </script>
+        <script id="chat_template" type="text/html">
+            <div id="Chat">
+                <div class="userlist-box"></div>
+                <div class="scroll-box">
+                    <dl class="dl-horizontal chat-log"></dl>
+                </div>
+                <div class="input-box">
+                    <div class="nick"></div>
+                    <div class="chat-text-input-wrapper">
+                        <input type="text" class="chat-input">
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script id="chatlog_template" type="text/html">
+            <dt>{{ from }}</dt>
+            <dd>{{ msg }}</dd>
+        </script>
+        <script id="notice_template" type="text/html">
+            <dt class="text-info">notice</dt>
+            <dd class="text-info">{{ msg }}</dd>
+        </script>
+        <script id="set_nick_template" type="text/html">
+            <div id="SetNick" tabindex="-1" role="dialog" area-labelledby="setNickLabel" aria-hidden="true" class="modal hide fade">
+                <div class="modal-header">
+                    <h3>Set your nickname.</h3>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="@nick" class="modal-big-text nickname">
+                </div>
+                <div class="modal-footer">
+                    <button onclick="location.href='#';" data-dismiss="modal" area-hidden="true" class="btn">Close</button>
+                    <button class="btn btn-primary set-nick">Enter</button>
+                </div>
+            </div>
+        </script>
+        <script id="change_nick_template" type="text/html">
+            <div id="ChangeNick" tabindex="-1" role="dialog" area-labelledby="changeNickLabel" aria-hidden="true" class="modal hide fade">
+                <div class="modal-header"><h3>Set your new nickname.</h3></div><div class="modal-body">
+                    <input type="text" placeholder="@nick" class="modal-big-text nickname">
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" area-hidden="true" class="btn">Close</button>
+                    <button class="btn btn-primary change-nick">Enter</button>
+                </div>
+            </div>
+        </script>
+        <script id="move_channel_template" type="text/html">
+            <div id="ChangeNick" tabindex="-1" role="dialog" area-labelledby="moveChannelLabel" aria-hidden="true" class="modal hide fade">
+                <div class="modal-header">
+                    <h3>Enter the name of the channel to move into.</h3>
+                </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="#channel" class="modal-big-text channel">
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" area-hidden="true" class="btn">Close</button>
+                    <button class="btn btn-primary move-channel">Enter</button>
+                </div>
+            </div>
+        </script>
+        <script id="upload_pic_template" type="text/html">
+            <div id="UploadPic" tabindex="-1" role="dialog" area-labelledby="uploadPicturesLabel" aria-hidden="true" class="modal hide fade">
+                <div class="modal-header">
+                    <h3>Upload your pictures!</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="uploadPictureForm" target="fileuploadIframe" action="/channel/{{ channel }}/upload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="picture_uploaded">
+                    </form>
+                    <p class="lead">You can upload pictures with drag-and-drop in modern browsers except IE. Just drag-and-drop pictures into the channel page!</p>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" area-hidden="true" class="btn">Close</button>
+                    <button class="btn btn-primary upload-pic">Upload</button>
+                </div>
+            </div>
+        </script>
+        <script id="picture_template" type="text/html">
+            <div class="picture-wrapper">
+                <a href="/picture/{{ pid }}/original" target="_blank">
+                    <img src="/picture/{{ pid }}" alt="{{ pid }}" class="picture">
+                </a>
+            </div>
+        </script>
+        <script id="empty_channel_template" type="text/html">
+            <div class="container center-aligned">
+                <p class="lead channel-oops">Oops! There&quot;s no picture uploaded in this channel...</p>
+                <h1 class="channel-title">
+                    <span class="sharp">#</span>
+                    <span>{{ channel }}</span>
+                </h1>
+                <p class="lead channel-oops">Please upload your pictures!</p>
+            </div>
+        </script>
+        <script id="show_pictures_template" type="text/html">
+            <div id="ShowPictures">
+                <ul class="picture-list"></ul>
+            </div>
+        </script>
+        <script id="picture_thumbnail_template" type="text/html">
+            <li>
+                <img src="/picture/{{ pid }}/thumbnail" alt="{{ pid }}">
+            </li>
+        </script>
+        <script id="drag_and_drop_status_bar" type="text/html">
+            <div id="DragAndDropStatusBar">
+                <div class="dragover-text">Drop the file to upload!</div>
+                <div class="uploading-text">Uploading...</div>
+            </div>
+        </script>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div id="Navbar">
+                </div>
+            </div>
+        </div>
+        <div id="content">
+        </div>
+        <script src='js/lib/jquery-1.8.2.min.js'></script>
+        <script src='js/lib/jquery.mousewheel.js'></script>
+        <script src='js/lib/jquery.filedrop.js'></script>
+        <script src='js/lib/perfect-scrollbar.min.js'></script>
+        <script src='js/lib/bootstrap.min.js'></script>
+        <script src='js/lib/underscore-min.js'></script>
+        <script src='js/lib/backbone-min.js'></script>
+        <script src='js/lib/ICanHaz.min.js'></script>
+        <script src='js/utils.js'></script>
+        <script src='js/handlers.js'></script>
+        <script src='js/router.js'></script>
+        <script src='js/socket.js'></script>
+        <script src='js/functions.js'></script>
+        <script src='js/views/navbar-view.js'></script>
+        <script src='js/views/channel-view.js'></script>
+        <script src='js/views/changenick-dialog.js'></script>
+        <script src='js/views/showpic-view.js'></script>
+        <script src='js/views/movechannel-dialog.js'></script>
+        <script src='js/views/index-view.js'></script>
+        <script src='js/views/chat-view.js'></script>
+        <script src='js/views/uploadpic-dialog.js'></script>
+        <script src='js/views/app-view.js'></script>
+        <script src='js/views/setnick-dialog.js'></script>
+        <script src='js/scenic-client.js'></script>
+    </body>
+</html>
