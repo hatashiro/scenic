@@ -11,7 +11,47 @@ Scenic is a Node.js based album app in which you can see great pictures with you
 How to Use?
 -----------
 
-Scenic is under development.
+Play with [demo page](http://noraesae.github.com/scenic/)!  
+*Demo page is under development...*
+
+Installation
+------------
+
+Assuming you already have node.js, npm and mongo run:
+
+    $ git clone git://github.com/noraesae/scenic.git
+    $ cd scenic
+    $ npm install
+    $ node scenic.js
+    
+Settings
+--------
+
+**settings.py** includes some settings you can change.
+    
+    var settings = module.exports = {
+        port: 8000,
+        mongo_uri: 'mongodb://localhost/scenic'
+    };
+    
+You can change port to make Scenic run on.
+You can also change mongodb's uri if mongo is not running on localhost.
+
+Deployment
+----------
+
+I highly recommend to use [forever](https://github.com/nodejitsu/forever) for deployment.  
+This is a simple use of forever to deploy Scenic.
+
+    $ npm install forever -g
+    $ forever start scenic.js
+    
+Browser Supports
+----------------
+
+Scenic is not well-tested with IE and can't assure to work well, but tested with the most of modern browsers. There are some features that don't work in IE(e.g. drag-and-drop upload).
+
+If there's a browser problem using Scenic, please let me know! The way how you can contact me is described in **Helpdesk**.
 
 License
 -------
@@ -31,5 +71,8 @@ Helpdesk
 
 If you have any idea to improve this project or any problems using this, please feel free to contact me.  
 Email: noraesae@yuiazu.net
+
+Scenic also has an IRC channel.  
+IRC: #scenicproject
 
 You can also post an issue : https://github.com/noraesae/scenic/issues
